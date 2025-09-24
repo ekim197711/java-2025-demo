@@ -1,0 +1,17 @@
+{
+  "mike": {
+    "age": 47,
+    "height": 192,
+    "weight": 89
+  },
+  "benjamin": {
+    "age": 41,
+    "height": 172,
+    "weight": 69
+  },
+  "susan": {
+    "age": 29,
+    "height": 178,
+    "weight": 59
+  }
+}

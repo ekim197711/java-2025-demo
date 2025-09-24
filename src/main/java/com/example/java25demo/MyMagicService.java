@@ -1,21 +1,16 @@
 package com.example.java25demo;
 
-import ch.qos.logback.core.util.StringUtil;
-import lombok.RequiredArgsConstructor;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
-
 public class MyMagicService {
-
-    public @NonNull String getMessage(@Nullable String name) {
-        name = StringUtil.nullStringToEmpty(name);
-        
-        return String.format("Hello, %s!", name);
+    public String getMessage(@NonNull String key) {
+        var myMap = Map.of("name", "Mike", "age", 20);
+        return myMap.getOrDefault(key, "unknown").toString();
     }
 }
