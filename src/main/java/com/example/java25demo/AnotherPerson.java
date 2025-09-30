@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
-    private String name;
+public class AnotherPerson {
     private int age;
-    private String height;
-    private String weight;
+    private int height;
 }
