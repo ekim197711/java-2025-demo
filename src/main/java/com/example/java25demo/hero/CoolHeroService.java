@@ -29,7 +29,7 @@ public class CoolHeroService {
                         .build(),
                 CoolHero.builder()
                         .name("Circuit Guardian")
-                        .alias("Volt Sentinel")
+                        .alias(null)
                         .experienceLevel(910)
                         .heightCm(195)
                         .weightKg(104.3)
