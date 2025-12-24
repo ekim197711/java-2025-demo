@@ -6,9 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 
 @SpringBootTest
 class CoolHeroServiceTest {
@@ -24,6 +27,32 @@ class CoolHeroServiceTest {
             .build();
     @Autowired
     private CoolHeroService coolHeroService;
+
+    @Test
+    void averageTheOldSlowWayTest() {
+        List<CoolHero> heroes = coolHeroService.getCoolHeroes();
+        int sum = 0;
+        for (CoolHero hero : heroes) {
+            sum += hero.getExperienceLevel();
+        }
+        double average = (double) sum / heroes.size();
+        assertThat(average).isCloseTo(500, within(10.0));
+    }
+
+
+    @Test
+    void averageTest() {
+        List<CoolHero> heroes = coolHeroService.getCoolHeroes();
+        assertThat(heroes).allSatisfy(hero -> assertThat(hero).hasNoNullFieldsOrProperties());
+        IntSummaryStatistics stats = heroes.stream()
+                .collect(Collectors.summarizingInt(CoolHero::getExperienceLevel));
+        System.out.println(stats);
+        assertThat(stats.getCount()).isGreaterThanOrEqualTo(20);
+        assertThat(stats.getMin()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getMax()).isLessThanOrEqualTo(1000);
+        assertThat(stats.getAverage()).isCloseTo(500, within(10.0));
+    }
+
 
     @Test
     void returnsDummyHeroRoster() {

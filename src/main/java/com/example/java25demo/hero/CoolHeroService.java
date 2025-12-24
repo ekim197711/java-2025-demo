@@ -77,7 +77,7 @@ public class CoolHeroService {
                         .alias("Skystride")
                         .experienceLevel(305)
                         .heightCm(176)
-                        .weightKg(70.4)
+                        .weightKg(-10)
                         .primaryPower("Aerial agility and wind gusts")
                         .homeBase("Nimbus Peak")
                         .build(),
@@ -191,7 +191,7 @@ public class CoolHeroService {
                         .build(),
                 CoolHero.builder()
                         .name("Void Whisper")
-                        .alias(null)
+                        .alias("sadæsd lædasf ldf")
                         .experienceLevel(0)
                         .heightCm(175)
                         .weightKg(69.0)
