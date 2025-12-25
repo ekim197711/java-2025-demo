@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
@@ -51,13 +53,13 @@ class CoolHeroServiceTest {
                     assertThat(hero.getHeightCm()).isGreaterThanOrEqualTo(0);
                 });
 
-//        IntSummaryStatistics stats = heroes.stream()
-//                .collect(Collectors.summarizingInt(CoolHero::getExperienceLevel));
-//        System.out.println(stats);
-//        assertThat(stats.getCount()).isGreaterThanOrEqualTo(20);
-//        assertThat(stats.getMin()).isGreaterThanOrEqualTo(0);
-//        assertThat(stats.getMax()).isLessThanOrEqualTo(1000);
-//        assertThat(stats.getAverage()).isCloseTo(500, within(10.0));
+        IntSummaryStatistics stats = heroes.stream()
+                .collect(Collectors.summarizingInt(CoolHero::getExperienceLevel));
+        System.out.println(stats);
+        assertThat(stats.getCount()).isGreaterThanOrEqualTo(20);
+        assertThat(stats.getMin()).isGreaterThanOrEqualTo(0);
+        assertThat(stats.getMax()).isLessThanOrEqualTo(1000);
+        assertThat(stats.getAverage()).isCloseTo(500, within(10.0));
     }
 
 
